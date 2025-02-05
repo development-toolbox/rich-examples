@@ -36,7 +36,6 @@ A collection of Python scripts demonstrating various features of the [Rich](http
 
 ```python
 #!/usr/bin/env python3
-# 01_basic_colors.py
 
 # Metadata for dynamic menu
 example_info = {
@@ -47,18 +46,6 @@ example_info = {
 
 This file demonstrates basic colour formatting and text styles with Rich.
 
-```python
-#!/usr/bin/env python3
-from rich.console import Console
-
-console = Console()
-
-console.print("[bold red]This is bold red text[/bold red]")
-console.print("[green]This is green text[/green]")
-console.print("[underline cyan]This is underlined cyan text[/underline cyan]")
-console.print("[bold italic magenta]This is bold italic magenta text[/bold italic magenta]")
-console.print("[yellow on blue]Yellow text on a blue background[/yellow on blue]")
-```
 
 *Explanation:*  
 A `Console` object is created from Rich. Its `print()` method uses Rich markup to display styled text.
@@ -87,11 +74,9 @@ console.print("[yellow on blue]Yellow text on a blue background[/yellow on blue]
 
 ```python
 #!/usr/bin/env python3
-# 02_emojis_markdown.py
-example_info = {
-    "title": "Emojis and Markdown",
-    "filename": "02_emojis_markdown.py",
-    "description": "Shows emoji support and Markdown rendering."
+
+**Description:** Shows emoji support and Markdown rendering.    
+        """
 }
 from rich.console import Console
 from rich.markdown import Markdown
@@ -126,14 +111,6 @@ console.print(md)
 
 ```python
 #!/usr/bin/env python3
-# 03_syntax_highlight.py
-example_info = {
-    "title": "Syntax Highlighting",
-    "filename": "03_syntax_highlight.py",
-    "description": "Highlights JSON code with a colour theme."
-}
-from rich.console import Console
-from rich.syntax import Syntax
 
 console = Console()
 
@@ -154,14 +131,6 @@ console.print(syntax)
 
 ```python
 #!/usr/bin/env python3
-# 04_tables.py
-example_info = {
-    "title": "Tables",
-    "filename": "04_tables.py",
-    "description": "Creates a formatted table with multiple columns."
-}
-from rich.console import Console
-from rich.table import Table
 
 console = Console()
 
@@ -190,14 +159,6 @@ console.print(table)
 
 ```python
 #!/usr/bin/env python3
-# 05_progress_bar.py
-example_info = {
-    "title": "Progress Bar",
-    "filename": "05_progress_bar.py",
-    "description": "Displays an interactive progress bar."
-}
-import time
-from rich.progress import Progress
 
 with Progress() as progress:
     task = progress.add_task("[cyan]Processing...", total=100)
@@ -218,14 +179,6 @@ with Progress() as progress:
 
 ```python
 #!/usr/bin/env python3
-# 06a_live_updates_console_print.py
-example_info = {
-    "title": "Rich Live Updates",
-    "filename": "06a_live_updates_console_print.py",
-    "description": "Displays live updates using the console.print function."
-}
-import time
-from rich.console import Console
 
 console = Console()
 
@@ -247,15 +200,6 @@ console.print("\nDone!")
 
 ```python
 #!/usr/bin/env python3
-# 06b_live_updates_text_object.py
-example_info = {
-    "title": "Rich Live Updates",
-    "filename": "06b_live_updates_text_object.py",
-    "description": "Displays live updates using the Text object."
-}
-import time
-from rich.console import Console
-from rich.text import Text
 
 console = Console()
 
@@ -314,14 +258,6 @@ log.error("This is an error")
 
 ```python
 #!/usr/bin/env python3
-# 08_tree.py
-example_info = {
-    "title": "Tree",
-    "filename": "08_tree.py",
-    "description": "Creates a tree structure using the Tree class."
-}
-from rich.console import Console
-from rich.tree import Tree
 
 console = Console()
 
@@ -338,7 +274,6 @@ child2.add("Grandchild 2.1")
 child2.add("Grandchild 2.2")
 
 console.print(tree)
-
 ```
 
 ---
@@ -353,15 +288,6 @@ console.print(tree)
 
 ```python
 #!/usr/bin/env python3
-# 09_layout.py
-example_info = {
-    "title": "Layout",
-    "filename": "09_layout.py",
-    "description": "Creates a layout with multiple panels."
-}
-from rich.console import Console
-from rich.layout import Layout
-from rich.panel import Panel
 
 console = Console()
 
@@ -382,7 +308,6 @@ layout["lower"].split_row(
 )
 
 console.print(layout)
-
 ```
 
 ---
@@ -397,14 +322,6 @@ console.print(layout)
 
 ```python
 #!/usr/bin/env python3
-# 10_spinner.py
-example_info = {
-    "title": "Spinner",
-    "filename": "10_spinner.py",
-    "description": "Displays a spinner while a task is being processed."
-}
-import time
-from rich.console import Console
 
 console = Console()
 
@@ -413,7 +330,6 @@ with console.status("[bold green]Processing...[/bold green]", spinner="dots"):
     time.sleep(3)
 
 console.print("[bold green]Done![/bold green]")
-
 ```
 
 ---
@@ -428,16 +344,6 @@ console.print("[bold green]Done![/bold green]")
 
 ```python
 #!/usr/bin/env python3
-# 11_layout_demo.py
-example_info = {
-    "title": "Layout Demo",
-    "filename": "11_layout_demo.py",
-    "description": "Creates a layout with a header and a body."
-}
-from rich.console import Console
-from rich.layout import Layout
-from rich.panel import Panel
-from rich.box import ROUNDED
 
 console = Console()
 
@@ -467,7 +373,6 @@ layout["body"].update(body_panel)
 
 console.print(layout)
 
-
 ```
 
 ---
@@ -482,15 +387,6 @@ console.print(layout)
 
 ```python
 #!/usr/bin/env python3
-# 12_font_demo.py
-example_info = {
-    "title": "Font Demo",
-    "filename": "12_font_demo.py",
-    "description": "Demonstrates different pyfiglet fonts."
-}
-import pyfiglet
-from rich.console import Console
-from rich.panel import Panel
 
 console = Console()
 
@@ -501,7 +397,6 @@ for font in fonts:
     ascii_art = pyfiglet.figlet_format("Rich", font=font)
     panel = Panel(ascii_art, title=f"[bold]{font}[/bold]", border_style="blue", expand=False)
     console.print(panel)
-
 
 ```
 
@@ -517,14 +412,6 @@ for font in fonts:
 
 ```python
 #!/usr/bin/env python3
-# 13_font_demo.py
-example_info = {
-    "title": "Font Demo",
-    "filename": "13_font_demo.py",
-    "description": "Demonstrates different fonts."
-}
-from rich.console import Console
-from rich.panel import Panel
 
 console = Console()
 
@@ -564,7 +451,6 @@ panel_italic = Panel(italic_text, title="Mathematical Italic", border_style="mag
 console.print(panel_bold)
 console.print(panel_italic)
 
-
 ```
 
 ---
@@ -579,10 +465,6 @@ console.print(panel_italic)
 
 ```python
 #!/usr/bin/env python3
-import time
-from rich.live import Live
-from rich.table import Table
-from rich.console import Console
 
 # Metadata for dynamic menu
 example_info = {
@@ -605,7 +487,6 @@ with Live(generate_table(0), refresh_per_second=2) as live:
     for i in range(1, 11):
         live.update(generate_table(i))
         time.sleep(1)
-
 ```
 
 ---
@@ -620,9 +501,6 @@ with Live(generate_table(0), refresh_per_second=2) as live:
 
 ```python
 #!/usr/bin/env python3
-from rich.console import Console
-from rich.theme import Theme
-from rich.panel import Panel
 
 # Metadata for dynamic menu
 example_info = {
@@ -643,7 +521,6 @@ console = Console(theme=custom_theme)
 console.print(Panel("This is an info message", style="info", title="Info"))
 console.print(Panel("This is a warning message", style="warning", title="Warning"))
 console.print(Panel("This is a danger message", style="danger", title="Danger"))
-
 ```
 
 ---
@@ -658,7 +535,6 @@ console.print(Panel("This is a danger message", style="danger", title="Danger"))
 
 ```python
 #!/usr/bin/env python3
-import rich.traceback
 
 # Metadata for dynamic menu
 example_info = {
@@ -677,7 +553,6 @@ def problematic_function():
 
 # This will raise an exception and show a pretty traceback
 problematic_function()
-
 ```
 
 ---

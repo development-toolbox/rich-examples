@@ -50,10 +50,35 @@ def get_example_code(filename):
         code = f.read()
     return code
 
+def remove_metadata_block(code):
+    """
+    Removes the metadata block (i.e. the top part of the file containing the
+    `example_info` assignment) from the code, but preserves the shebang line if present.
+    Assumes the metadata block starts after the shebang line (if it exists) and ends at the first blank line.
+    """
+    lines = code.splitlines()
+    new_lines = []
+    
+    # If the first line is a shebang, preserve it.
+    if lines and lines[0].startswith("#!"):
+        new_lines.append(lines[0])
+        lines = lines[1:]
+    
+    in_metadata = True
+    for line in lines:
+        # Once we hit a blank line, metadata is over.
+        if in_metadata and line.strip() == "":
+            in_metadata = False
+            new_lines.append(line)  # Optionally, include the blank line.
+            continue
+        if not in_metadata:
+            new_lines.append(line)
+    return "\n".join(new_lines)
+
 def generate_readme_content(examples):
     """
     Generates the Markdown content for README-Tutorials.md using the examples' metadata.
-    Automatically inserts the full Python code of each example as a code block.
+    Automatically inserts the full Python code (without metadata) of each example as a code block.
     """
     md = "# Rich Examples Tutorials\n\n"
     md += "A collection of Python scripts demonstrating various features of the [Rich](https://rich.readthedocs.io/) library.\n\n"
@@ -70,7 +95,8 @@ def generate_readme_content(examples):
         md += f"**File:** `{info['filename']}`\n\n"
         md += "#### Code\n\n"
         code = get_example_code(info["filename"])
-        md += "```python\n" + code + "\n```\n\n"
+        code_without_metadata = remove_metadata_block(code)
+        md += "```python\n" + code_without_metadata + "\n```\n\n"
         md += "---\n\n"
     return md
 
