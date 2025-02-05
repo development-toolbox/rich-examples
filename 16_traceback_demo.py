@@ -5,7 +5,8 @@ import rich.traceback
 example_info = {
     "title": "Rich Traceback Demo",
     "filename": "16_traceback_demo.py",
-    "description": "Demonstrates enhanced traceback formatting with Rich."
+    "description": "Demonstrates enhanced traceback formatting with Rich.",
+    "explanation": "The `rich.traceback.install()` function is used to install the Rich traceback handler, which provides enhanced traceback formatting with Rich."
 }
 
 # Install the Rich traceback handler

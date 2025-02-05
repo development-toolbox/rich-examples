@@ -3,7 +3,8 @@
 example_info = {
     "title": "Tree",
     "filename": "08_tree.py",
-    "description": "Creates a tree structure using the Tree class."
+    "description": "Creates a tree structure using the Tree class.",
+    "explanation": "This script demonstrates how to use the Tree class to display a hierarchical structure."
 }
 from rich.console import Console
 from rich.tree import Tree

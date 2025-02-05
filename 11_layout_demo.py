@@ -3,7 +3,8 @@
 example_info = {
     "title": "Layout Demo",
     "filename": "11_layout_demo.py",
-    "description": "Creates a layout with a header and a body."
+    "description": "Creates a layout with a header and a body.",
+    "explanation": "This script demonstrates how to create a terminal layout using the `Layout` class. It arranges several panels on the screen."
 }
 from rich.console import Console
 from rich.layout import Layout

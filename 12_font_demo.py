@@ -3,7 +3,8 @@
 example_info = {
     "title": "Font Demo",
     "filename": "12_font_demo.py",
-    "description": "Demonstrates different pyfiglet fonts."
+    "description": "Demonstrates different pyfiglet fonts.",
+    "explanation": "The pyfiglet module is used to generate ASCII art from text."
 }
 import pyfiglet
 from rich.console import Console

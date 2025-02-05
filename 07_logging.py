@@ -4,7 +4,8 @@
 example_info = {
     "title": "Rich Logging",
     "filename": "07_logging.py",
-    "description": "Demonstrates colour-coded logging with Rich."
+    "description": "Demonstrates colour-coded logging with Rich.",
+    "explanation": "The `logging` module is used to create colour-coded logs with Rich."
 }
 
 from rich.logging import RichHandler

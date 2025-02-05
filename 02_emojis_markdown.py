@@ -3,7 +3,8 @@
 example_info = {
     "title": "Emojis and Markdown",
     "filename": "02_emojis_markdown.py",
-    "description": "Shows emoji support and Markdown rendering."
+    "description": "Shows emoji support and Markdown rendering.",
+    "explaination": "This script uses emojis and Markdown to display text and content."
 }
 from rich.console import Console
 from rich.markdown import Markdown

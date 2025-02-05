@@ -3,7 +3,8 @@
 example_info = {
     "title": "Spinner",
     "filename": "10_spinner.py",
-    "description": "Displays a spinner while a task is being processed."
+    "description": "Displays a spinner while a task is being processed.",
+    "explanation": "This script demonstrates how to display a spinner using Rich’s status context manager. It is useful for showing an animated spinner while performing a task."
 }
 import time
 from rich.console import Console

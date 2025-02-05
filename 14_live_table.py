@@ -8,7 +8,8 @@ from rich.console import Console
 example_info = {
     "title": "Live Updating Table",
     "filename": "14_live_table.py",
-    "description": "Demonstrates a live-updating table that refreshes its data every second."
+    "description": "Demonstrates a live-updating table that refreshes its data every second.",
+    "explanation": "uses    with Live(generate_table(0), refresh_per_second=2) as live:\n    for i in range(1, 11):\n        live.update(generate_table(i))\n        time.sleep(1)"
 }
 
 console = Console()

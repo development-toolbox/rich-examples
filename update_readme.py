@@ -78,7 +78,8 @@ def remove_metadata_block(code):
 def generate_readme_content(examples):
     """
     Generates the Markdown content for README-Tutorials.md using the examples' metadata.
-    Automatically inserts the full Python code (without metadata) of each example as a code block.
+    Automatically inserts the full Python code (without metadata) of each example as a code block,
+    and includes the explanation text if provided.
     """
     md = "# Rich Examples Tutorials\n\n"
     md += "A collection of Python scripts demonstrating various features of the [Rich](https://rich.readthedocs.io/) library.\n\n"
@@ -92,6 +93,8 @@ def generate_readme_content(examples):
     for idx, info in enumerate(examples, start=1):
         md += f"### {idx}. {info['title']}\n\n"
         md += f"**Description:** {info['description']}\n\n"
+        if "explanation" in info:
+            md += f"**Explanation:** {info['explanation']}\n\n"
         md += f"**File:** `{info['filename']}`\n\n"
         md += "#### Code\n\n"
         code = get_example_code(info["filename"])

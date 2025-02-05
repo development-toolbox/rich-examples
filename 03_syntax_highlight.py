@@ -3,7 +3,8 @@
 example_info = {
     "title": "Syntax Highlighting",
     "filename": "03_syntax_highlight.py",
-    "description": "Highlights JSON code with a colour theme."
+    "description": "Highlights JSON code with a colour theme.",
+    "explanation": "The `Syntax` object is used to highlight JSON code with a colour theme."
 }
 from rich.console import Console
 from rich.syntax import Syntax

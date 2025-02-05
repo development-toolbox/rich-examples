@@ -7,7 +7,8 @@ from rich.panel import Panel
 example_info = {
     "title": "Custom Theme Demo",
     "filename": "15_custom_theme.py",
-    "description": "Demonstrates how to use a custom Rich theme to style output."
+    "description": "Demonstrates how to use a custom Rich theme to style output.",
+    "explanation": "The `Console` object is created from Rich with a custom theme. The `print()` method uses Rich markup to display styled text."
 }
 
 # Define a custom theme

@@ -3,7 +3,8 @@
 example_info = {
     "title": "Rich Live Updates",
     "filename": "06b_live_updates_text_object.py",
-    "description": "Displays live updates using the Text object."
+    "description": "Displays live updates using the Text object.",
+    "explanation": "This script uses the Text object to display live updates. It simulates a task by sleeping for three seconds, and then prints 'Done!' when the task is complete."
 }
 import time
 from rich.console import Console

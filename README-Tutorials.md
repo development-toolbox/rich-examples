@@ -30,6 +30,8 @@ A collection of Python scripts demonstrating various features of the [Rich](http
 
 **Description:** Demonstrates basic colour formatting and text styles with Rich.
 
+**Explanation:** A `Console` object is created from Rich. Its `print()` method uses Rich markup to display styled text.
+
 **File:** `01_basic_colors.py`
 
 #### Code
@@ -42,14 +44,7 @@ example_info = {
     "title": "Basic Colours",
     "filename": "01_basic_colors.py",
     "description": "Demonstrates basic colour formatting and text styles with Rich.",
-    "tutorial": """### 01_basic_colors.py
-
-This file demonstrates basic colour formatting and text styles with Rich.
-
-
-*Explanation:*  
-A `Console` object is created from Rich. Its `print()` method uses Rich markup to display styled text.
-"""
+    "explanation": "A `Console` object is created from Rich. Its `print()` method uses Rich markup to display styled text."
 }
 from rich.console import Console
 

@@ -3,7 +3,8 @@
 example_info = {
     "title": "Tables",
     "filename": "04_tables.py",
-    "description": "Creates a formatted table with multiple columns."
+    "description": "Creates a formatted table with multiple columns.",
+    "explanation": "The `Table` object is used to create a formatted table with multiple columns."
 }
 from rich.console import Console
 from rich.table import Table
