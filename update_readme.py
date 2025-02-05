@@ -44,9 +44,9 @@ def scan_examples(directory="."):
 
 def generate_readme_content(examples):
     """
-    Generates the Markdown content for README.md using the examples' metadata.
+    Generates the Markdown content for README-Tutorials.md using the examples' metadata.
     """
-    md = "# Rich Examples\n\n"
+    md = "# Rich Examples Tutorials\n\n"
     md += "A collection of Python scripts demonstrating various features of the [Rich](https://rich.readthedocs.io/) library.\n\n"
     md += "## Available Examples\n\n"
     md += "| Option | Title | Description | File |\n"
@@ -54,9 +54,11 @@ def generate_readme_content(examples):
     for idx, info in enumerate(examples, start=1):
         md += f"| {idx} | {info['title']} | {info['description']} | `{info['filename']}` |\n"
     md += "\n"
-    md += "## How to Run\n\n"
-    md += "Clone the repository and run the dynamic menu to select an example:\n\n"
-    md += "```\n./00_rich_examples.py\n```\n"
+    md += "## Tutorials\n\n"
+    for idx, info in enumerate(examples, start=1):
+        md += f"### {idx}. {info['title']}\n\n"
+        md += f"{info.get('tutorial', 'No tutorial provided.')}\n\n"
+        md += "---\n\n"
     return md
 
 def update_readme():
@@ -64,7 +66,7 @@ def update_readme():
     readme_content = generate_readme_content(examples)
     with open("README-Tutorials.md", "w", encoding="utf-8") as f:
         f.write(readme_content)
-    print("README.md has been updated with the latest examples.")
+    print("README-Tutorials.md has been updated with the latest examples.")
 
 if __name__ == "__main__":
     update_readme()
