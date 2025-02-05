@@ -42,9 +42,18 @@ def scan_examples(directory="."):
     examples.sort(key=lambda x: x["filename"])
     return examples
 
+def get_example_code(filename):
+    """
+    Reads the entire content of the given file and returns it as a string.
+    """
+    with open(filename, "r", encoding="utf-8") as f:
+        code = f.read()
+    return code
+
 def generate_readme_content(examples):
     """
     Generates the Markdown content for README-Tutorials.md using the examples' metadata.
+    Automatically inserts the full Python code of each example as a code block.
     """
     md = "# Rich Examples Tutorials\n\n"
     md += "A collection of Python scripts demonstrating various features of the [Rich](https://rich.readthedocs.io/) library.\n\n"
@@ -57,7 +66,11 @@ def generate_readme_content(examples):
     md += "## Tutorials\n\n"
     for idx, info in enumerate(examples, start=1):
         md += f"### {idx}. {info['title']}\n\n"
-        md += f"{info.get('tutorial', 'No tutorial provided.')}\n\n"
+        md += f"**Description:** {info['description']}\n\n"
+        md += f"**File:** `{info['filename']}`\n\n"
+        md += "#### Code\n\n"
+        code = get_example_code(info["filename"])
+        md += "```python\n" + code + "\n```\n\n"
         md += "---\n\n"
     return md
 
@@ -70,4 +83,3 @@ def update_readme():
 
 if __name__ == "__main__":
     update_readme()
-
