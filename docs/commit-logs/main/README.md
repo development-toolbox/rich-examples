@@ -7,6 +7,7 @@ Each commit links to its detailed log.
 
 | Commit Hash | Date & Time       | Author       | Message           |
 |-------------|------------------|--------------|-------------------|
+| [5fc565c1](./5fc565c1.md) | 2025-02-05 18:22 | Johan Sörell | fix(update-readme): refine metadata removal and code extraction |
 | [4cc29974](./4cc29974.md) | 2025-02-05 17:28 | Johan Sörell | chore(docs): update README-Tutorials |
 | [8f557ef3](./8f557ef3.md) | 2025-02-05 14:50 | Johan Sörell | feat(update-readme): auto-insert Python code into tutorial sections |
 | [96323b37](./96323b37.md) | 2025-02-05 13:50 | Johan Sörell | chore(sonarcloud-setup): setup sonarcloud project |
