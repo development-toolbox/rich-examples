@@ -1,0 +1,129 @@
+#!/bin/bash
+# post-commit
+
+set -e  # Exit script if any command fails
+
+# Prevent recursive execution using a marker file
+MARKER_FILE=$(git rev-parse --git-path hooks/.post-commit.lock)
+
+if [ -f "$MARKER_FILE" ]; then
+  echo "🚫 Skipping post-commit actions to prevent recursion."
+  exit 0
+fi
+
+# Create the marker file
+touch "$MARKER_FILE"
+
+# Ensure marker is removed even if the script fails
+trap 'rm -f "$MARKER_FILE"' EXIT
+
+# Get the repository root directory
+REPO_ROOT=$(git rev-parse --show-toplevel)
+
+# Get commit details
+COMMIT_HASH=$(git rev-parse HEAD)
+COMMIT_MESSAGE=$(git log -1 --pretty=format:"%B")  # Full commit message
+AUTHOR=$(git log -1 --pretty=format:"%an")
+DATE=$(git log -1 --pretty=format:"%ad" --date=iso)
+BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+
+# Fetch changed files with statuses
+CHANGED_FILES=$(git show --pretty="" --name-status HEAD)
+
+# Skip log update commits
+if [[ "$COMMIT_MESSAGE" == "Update commit logs:"* ]] && [[ "$COMMIT_HASH" == "$(git rev-parse HEAD)" ]]; then
+  echo "Skipping log update commit."
+  exit 0
+fi
+
+# Ensure we are in the repository root
+cd "$REPO_ROOT" || { echo "ERROR: Could not navigate to repository root"; exit 1; }
+
+# Define the log directory
+LOG_DIR="docs/commit-logs/$BRANCH_NAME"
+
+# Ensure the directory exists
+mkdir -p "$LOG_DIR" || { echo "ERROR: Could not create directory $LOG_DIR. Check permissions."; exit 1; }
+
+
+# Define the log file name with branch structure and shortened hash
+SHORT_HASH=$(echo "$COMMIT_HASH" | cut -c 1-8)
+LOG_FILE="$LOG_DIR/$SHORT_HASH.md"
+
+# Write the Markdown log
+{
+  echo "# Commit Log"
+  echo
+  echo "---"
+  echo
+  echo "## Commit Details"
+  echo
+  echo "- **Commit Hash:**   \`$COMMIT_HASH\`"
+  echo "- **Branch:**        \`$BRANCH_NAME\`"
+  echo "- **Author:**        $AUTHOR"
+  echo "- **Date:**          $DATE"
+  echo "- **Message:**"
+  echo
+  echo "  $COMMIT_MESSAGE"
+  echo
+  echo "---"
+  echo
+  echo "## Changed Files:"
+  echo
+  while IFS= read -r line; do
+    echo "- \`$line\`"
+  done <<< "$CHANGED_FILES"
+  echo
+  echo "---"
+} > "$LOG_FILE"
+
+echo "🎯 Commit Process Started..."
+echo
+echo "📌 Commit message logged to: $LOG_FILE"
+echo
+
+
+# Stage the log file
+git add "$LOG_FILE"
+if [ $? -ne 0 ]; then
+  echo "ERROR: Failed to stage $LOG_FILE"
+  exit 1
+fi
+echo "✅ Successfully staged: $LOG_FILE"
+
+# Update branch-specific README.md
+export BRANCH_NAME="$BRANCH_NAME"  # Pass branch name to the script
+bash "$REPO_ROOT/scripts/post-commit/update-readme.sh"
+
+
+# === INKLUDERA PYTHON-SKRIPTET FÖR GIT TIMELINE ===
+# Run the Python script to generate the timeline directly in the correct folder
+python3 "$REPO_ROOT/scripts/post-commit/generate_git_timeline.py" || { echo "Python script failed!"; exit 1; }
+
+# Kontrollera om timeline genererades korrekt
+TIMELINE_FILE="$REPO_ROOT/docs/commit-logs/$BRANCH_NAME/git_timeline_report.md"
+
+if [ ! -f "$TIMELINE_FILE" ]; then
+    echo "ERROR: git_timeline_report.md was not generated."
+    exit 1
+fi
+
+# === SLUT PÅ INKLUDERING ===
+
+
+# Commit the log file if there are changes
+if ! git diff --cached --quiet; then
+  git commit --quiet -m "Update commit logs: $COMMIT_HASH"
+  echo "DEBUG: Successfully committed staged files."
+fi
+
+
+
+  # Optional Push: Controlled by an environment variable
+# Optional Push: Controlled by an environment variable
+if [ "$GIT_AUTO_PUSH" == "true" ]; then
+  git push origin "$BRANCH_NAME"
+  echo "DEBUG: Successfully pushed changes to remote."
+else
+  echo "🚀 [INFO] Auto-push disabled. Skipping push step."
+fi
