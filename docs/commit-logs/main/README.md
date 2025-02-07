@@ -7,6 +7,7 @@ Each commit links to its detailed log.
 
 | Commit Hash | Date & Time       | Author       | Message           |
 |-------------|------------------|--------------|-------------------|
+| [61fc8181](./61fc8181.md) | 2025-02-07 18:57 | Johan Sörell | fix(update-readme): refactor load_example_info to reduce cognitive complexity |
 | [1b111b4c](./1b111b4c.md) | 2025-02-05 20:50 | Johan Sörell | feat(metadata): add explanation field and update README generator |
 | [5fc565c1](./5fc565c1.md) | 2025-02-05 18:22 | Johan Sörell | fix(update-readme): refine metadata removal and code extraction |
 | [4cc29974](./4cc29974.md) | 2025-02-05 17:28 | Johan Sörell | chore(docs): update README-Tutorials |
