@@ -14,22 +14,22 @@ def load_example_info(filepath):
     assignment to `example_info`. Returns the evaluated data if found,
     or None if not.
     """
-    with open(filepath, "r", encoding="utf-8") as f:
-        file_content = f.read()
     try:
+        with open(filepath, "r", encoding="utf-8") as f:
+            file_content = f.read()
         tree = ast.parse(file_content, filename=filepath)
     except Exception:
         return None
+
     for node in tree.body:
-        if isinstance(node, ast.Assign):
-            for target in node.targets:
-                if isinstance(target, ast.Name) and target.id == "example_info":
-                    try:
-                        # Safely evaluate the value
-                        value = ast.literal_eval(node.value)
-                        return value
-                    except Exception:
-                        return None
+        if isinstance(node, ast.Assign) and any(
+            isinstance(target, ast.Name) and target.id == "example_info"
+            for target in node.targets
+        ):
+            try:
+                return ast.literal_eval(node.value)
+            except Exception:
+                return None
     return None
 
 def scan_examples(directory="."):
