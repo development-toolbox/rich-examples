@@ -70,12 +70,6 @@ console.print("[yellow on blue]Yellow text on a blue background[/yellow on blue]
 ```python
 #!/usr/bin/env python3
 
-**Description:** Shows emoji support and Markdown rendering.    
-        """
-}
-from rich.console import Console
-from rich.markdown import Markdown
-
 console = Console()
 
 # Displaying emojis and styled text
@@ -100,6 +94,8 @@ console.print(md)
 
 **Description:** Highlights JSON code with a colour theme.
 
+**Explanation:** The `Syntax` object is used to highlight JSON code with a colour theme.
+
 **File:** `03_syntax_highlight.py`
 
 #### Code
@@ -119,6 +115,8 @@ console.print(syntax)
 ### 4. Tables
 
 **Description:** Creates a formatted table with multiple columns.
+
+**Explanation:** The `Table` object is used to create a formatted table with multiple columns.
 
 **File:** `04_tables.py`
 
@@ -148,6 +146,8 @@ console.print(table)
 
 **Description:** Displays an interactive progress bar.
 
+**Explanation:** A progress bar is created using the `Progress` class. Work is simulated by a loop with a small delay, updating the progress each time.
+
 **File:** `05_progress_bar.py`
 
 #### Code
@@ -167,6 +167,8 @@ with Progress() as progress:
 ### 6. Rich Live Updates
 
 **Description:** Displays live updates using the console.print function.
+
+**Explanation:** This script uses the console.print function to display live updates. It simulates a task by sleeping for three seconds, and then prints 'Done!' when the task is complete.
 
 **File:** `06a_live_updates_console_print.py`
 
@@ -188,6 +190,8 @@ console.print("\nDone!")
 ### 7. Rich Live Updates
 
 **Description:** Displays live updates using the Text object.
+
+**Explanation:** This script uses the Text object to display live updates. It simulates a task by sleeping for three seconds, and then prints 'Done!' when the task is complete.
 
 **File:** `06b_live_updates_text_object.py`
 
@@ -211,6 +215,8 @@ console.print("\nDone!")
 
 **Description:** Demonstrates colour-coded logging with Rich.
 
+**Explanation:** The `logging` module is used to create colour-coded logs with Rich.
+
 **File:** `07_logging.py`
 
 #### Code
@@ -222,7 +228,8 @@ console.print("\nDone!")
 example_info = {
     "title": "Rich Logging",
     "filename": "07_logging.py",
-    "description": "Demonstrates colour-coded logging with Rich."
+    "description": "Demonstrates colour-coded logging with Rich.",
+    "explanation": "The `logging` module is used to create colour-coded logs with Rich."
 }
 
 from rich.logging import RichHandler
@@ -246,6 +253,8 @@ log.error("This is an error")
 ### 9. Tree
 
 **Description:** Creates a tree structure using the Tree class.
+
+**Explanation:** This script demonstrates how to use the Tree class to display a hierarchical structure.
 
 **File:** `08_tree.py`
 
@@ -276,6 +285,8 @@ console.print(tree)
 ### 10. Layout
 
 **Description:** Creates a layout with multiple panels.
+
+**Explanation:** This script demonstrates how to create a terminal layout using the `Layout` class. It arranges several panels on the screen.
 
 **File:** `09_layout.py`
 
@@ -311,6 +322,8 @@ console.print(layout)
 
 **Description:** Displays a spinner while a task is being processed.
 
+**Explanation:** This script demonstrates how to display a spinner using Rich’s status context manager. It is useful for showing an animated spinner while performing a task.
+
 **File:** `10_spinner.py`
 
 #### Code
@@ -332,6 +345,8 @@ console.print("[bold green]Done![/bold green]")
 ### 12. Layout Demo
 
 **Description:** Creates a layout with a header and a body.
+
+**Explanation:** This script demonstrates how to create a terminal layout using the `Layout` class. It arranges several panels on the screen.
 
 **File:** `11_layout_demo.py`
 
@@ -376,6 +391,8 @@ console.print(layout)
 
 **Description:** Demonstrates different pyfiglet fonts.
 
+**Explanation:** The pyfiglet module is used to generate ASCII art from text.
+
 **File:** `12_font_demo.py`
 
 #### Code
@@ -400,6 +417,8 @@ for font in fonts:
 ### 14. Font Demo
 
 **Description:** Demonstrates different fonts.
+
+**Explanation:** The pyfiglet module is used to generate ASCII art from text.
 
 **File:** `13_font_demo.py`
 
@@ -454,6 +473,11 @@ console.print(panel_italic)
 
 **Description:** Demonstrates a live-updating table that refreshes its data every second.
 
+**Explanation:** uses    with Live(generate_table(0), refresh_per_second=2) as live:
+    for i in range(1, 11):
+        live.update(generate_table(i))
+        time.sleep(1)
+
 **File:** `14_live_table.py`
 
 #### Code
@@ -465,7 +489,8 @@ console.print(panel_italic)
 example_info = {
     "title": "Live Updating Table",
     "filename": "14_live_table.py",
-    "description": "Demonstrates a live-updating table that refreshes its data every second."
+    "description": "Demonstrates a live-updating table that refreshes its data every second.",
+    "explanation": "uses    with Live(generate_table(0), refresh_per_second=2) as live:\n    for i in range(1, 11):\n        live.update(generate_table(i))\n        time.sleep(1)"
 }
 
 console = Console()
@@ -490,6 +515,8 @@ with Live(generate_table(0), refresh_per_second=2) as live:
 
 **Description:** Demonstrates how to use a custom Rich theme to style output.
 
+**Explanation:** The `Console` object is created from Rich with a custom theme. The `print()` method uses Rich markup to display styled text.
+
 **File:** `15_custom_theme.py`
 
 #### Code
@@ -501,7 +528,8 @@ with Live(generate_table(0), refresh_per_second=2) as live:
 example_info = {
     "title": "Custom Theme Demo",
     "filename": "15_custom_theme.py",
-    "description": "Demonstrates how to use a custom Rich theme to style output."
+    "description": "Demonstrates how to use a custom Rich theme to style output.",
+    "explanation": "The `Console` object is created from Rich with a custom theme. The `print()` method uses Rich markup to display styled text."
 }
 
 # Define a custom theme
@@ -524,6 +552,8 @@ console.print(Panel("This is a danger message", style="danger", title="Danger"))
 
 **Description:** Demonstrates enhanced traceback formatting with Rich.
 
+**Explanation:** The `rich.traceback.install()` function is used to install the Rich traceback handler, which provides enhanced traceback formatting with Rich.
+
 **File:** `16_traceback_demo.py`
 
 #### Code
@@ -535,7 +565,8 @@ console.print(Panel("This is a danger message", style="danger", title="Danger"))
 example_info = {
     "title": "Rich Traceback Demo",
     "filename": "16_traceback_demo.py",
-    "description": "Demonstrates enhanced traceback formatting with Rich."
+    "description": "Demonstrates enhanced traceback formatting with Rich.",
+    "explanation": "The `rich.traceback.install()` function is used to install the Rich traceback handler, which provides enhanced traceback formatting with Rich."
 }
 
 # Install the Rich traceback handler
