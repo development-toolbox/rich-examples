@@ -7,6 +7,7 @@ Each commit links to its detailed log.
 
 | Commit Hash | Date & Time       | Author       | Message           |
 |-------------|------------------|--------------|-------------------|
+| [922be665](./922be665.md) | 2025-02-24 12:52 | Johan Sörell | chore(docs): updated explanations |
 | [1bd55a9c](./1bd55a9c.md) | 2025-02-24 12:52 | Johan Sörell | do( |
 | [d9d7b6eb](./d9d7b6eb.md) | 2025-02-07 19:05 | Johan Sörell | fix(update-readme): refactor load_example_info to reduce cognitive complexity |
 | [61fc8181](./61fc8181.md) | 2025-02-07 18:57 | Johan Sörell | fix(update-readme): refactor load_example_info to reduce cognitive complexity |
